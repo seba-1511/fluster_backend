@@ -9,7 +9,6 @@ install:
   - pip install https://github.com/dcramer/pyflakes/tarball/master
   - pip install -U -r requirements.txt
 before_script:
-  - "pep8 --exclude=migrations --ignore=E501,E225 src"
-  - pyflakes -x W src
+  - echo "started"
 script:
   - python fluster_backend/manage.py test

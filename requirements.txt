@@ -2,7 +2,6 @@ Django==1.7.3
 Jinja2==2.7.2
 MarkupSafe==0.18
 MySQL-python==1.2.3
-PAM==0.4.2
 Pillow==2.3.0
 PyYAML==3.11
 Pygments==1.6
@@ -83,9 +82,6 @@ sessioninstaller==0.0.0
 simplegeneric==0.8.1
 simplejson==3.3.1
 six==1.5.2
-software-center-aptd-plugins==0.0.0
-spyder==2.2.5
-tornado==3.1.1
 ujson==1.33
 urllib3==1.7.1
 virtualenv==1.11.4

@@ -2,3 +2,4 @@ Django==1.7.3
 djangorestframework==3.0.3
 markdown==2.5.2
 django-filter==0.9.1
+django-cors-headers==0.12

@@ -1,9 +1,9 @@
 from django.conf.urls import patterns, url
 from cluster import views
 urlpatterns = patterns(
-    'users.views',
+    'cluster.views',
     url(
-        regex=r'^$',
+        regex=r'^(?P<token>.+)$',
         view='launch_clustering',
         name='basic_urls',
     ),

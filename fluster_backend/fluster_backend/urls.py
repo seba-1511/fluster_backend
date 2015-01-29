@@ -10,4 +10,8 @@ urlpatterns = patterns(
         r'^users/',
         include('users.urls')
     ),
+    url(
+        r'^cluster/',
+        include('cluster.urls')
+    ),
 )

@@ -25,7 +25,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['', ]
+ALLOWED_HOSTS = ['*', ]
 
 ADMINS = (
     ('Sebastien Arnold', 'seb@getfluster.com'),
@@ -105,3 +105,11 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+def init_dropbox():
+    app_key = 'INSERT_APP_KEY'
+    app_secret = 'INSERT_APP_SECRET'
+    return None
+
+dropbox = init_dropbox()

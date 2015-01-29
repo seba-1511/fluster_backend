@@ -1,5 +1,8 @@
+import dropbox
+
 from django.http import HttpResponse
 
 
-def dropbox_login(request):
+def get_login_url(request):
+
     return HttpResponse('124')

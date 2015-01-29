@@ -4,7 +4,7 @@ urlpatterns = patterns(
     'users.views',
     url(
         regex=r'^$',
-        view='dropbox_login',
+        view='get_login_url',
         name='basic_urls',
     ),
     url(

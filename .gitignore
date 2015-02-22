@@ -58,5 +58,3 @@ target/
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-# Avoiding the clustering mess
-fluster_backend/cluster/fluster_cluster/

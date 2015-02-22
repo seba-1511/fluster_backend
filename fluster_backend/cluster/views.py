@@ -19,10 +19,7 @@ def launch_clustering(request, token):
     size = RootN()
     cluster = KMeans()
     name = LabelNames()
-    # print 'Getting Client'
     client = DropboxClient(token)
-    # print 'Downloading the files'
     files = get_files(client)  # Returns the files and metadata
-    # print 'Clustering init...'
     folder_paths = organize(files, extract, size, cluster, name)
     return HttpResponse(json.dumps(folder_paths))

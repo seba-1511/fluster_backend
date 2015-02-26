@@ -16,7 +16,7 @@ from cStringIO import StringIO
 
 #: before writing a parser, make a test set of the given file types.
 
-supported_file_types = ['.txt', '.docx', '.pdf']
+supported_file_types = ['.txt', '.docx', '.pdf', '.py']
 
 
 def test(testString):
@@ -28,7 +28,8 @@ def parse(file):
     parser = {
         '.txt': parse_txt,
         '.docx': parse_docx,
-        '.pdf': parse_pdf
+        '.pdf': parse_pdf,
+        '.py': parse_txt
     }
 
     contents = ''

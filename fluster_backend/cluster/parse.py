@@ -19,7 +19,11 @@ from cStringIO import StringIO
 supported_file_types = ['.txt', '.docx', '.pdf']
 
 
-def parse(file, metadata):
+def test(testString):
+    print testString
+
+
+def parse(file):
     """Try to read a file and return name if exception."""
     parser = {
         '.txt': parse_txt,
@@ -27,12 +31,12 @@ def parse(file, metadata):
         '.pdf': parse_pdf
     }
 
-    contents = []
-    file_type = os.path.splitext(metadata['path'])[1]
+    contents = ''
+    file_type = os.path.splitext(file)[1]
     if file_type in supported_file_types:
-        parser[file_type](file)
+        contents += parser[file_type](file)
     else:
-        contents.append(os.path.basename(file))
+        contents += os.path.basename(file)
     return contents
 
 
@@ -40,7 +44,6 @@ def parse_txt(file):
     """ Parse text files"""
     with open(file) as file:
         contents = file.read()
-        file.close()
         return contents
 
 
@@ -68,7 +71,6 @@ def parse_pdf(file_name):
     device.close()
     str = retstr.getvalue()
     retstr.close()
-    file_name.close()
     return str
 
 
@@ -82,7 +84,6 @@ def parse_docx(file):
     document = docx.Document(file)
     contents = '\n\n'.join(
         [paragraph.text for paragraph in document.paragraphs])
-    file.close()
     return contents
 
 

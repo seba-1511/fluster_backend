@@ -1,25 +1,37 @@
 import json
+import fluster
 from dropbox.client import DropboxClient
 from django.http import HttpResponse
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
-from fluster_cluster.fluster_cluster.pipeline.base import organize
-from fluster_cluster.fluster_cluster.cluster_name.base import LabelNames
-from fluster_cluster.fluster_cluster.cluster_size.base import RootN
-
-
-def get_files(client):
-    directory = client.metadata('/')
-    return zip(*[client.get_file_and_metadata(f['path'])
-                 for f in directory['contents']])
 
 
 def launch_clustering(request, token):
-    extract = TfidfVectorizer()
-    size = RootN()
-    cluster = KMeans()
-    name = LabelNames()
-    client = DropboxClient(token)
-    files = get_files(client)  # Returns the files and metadata
-    folder_paths = organize(files, extract, size, cluster, name)
-    return HttpResponse(json.dumps(folder_paths))
+    """  
+    Call this to get files from dropbox, parse, cluster and return cluster results.
+
+    Parameters
+    ----------
+    token : Dropbox API token
+
+    Return Values
+    -------------
+    X : array-like, shape (n_samples, 2)
+        2D coordinates of resulting clusters
+
+    labels : array-like, shape (n_samples, )
+        Cluster assignments
+
+    """
+
+    db = fluster.Fluster(token)
+    paths = db.get_file_paths()
+    db.get_files_and_write(paths)
+    contents = db.parse_files_in_folder('dropbox_files/')
+
+    X = TfidfVectorizer().fit_transform(contents)
+    km = KMeans(n_clusters=2)
+    X = km.fit_transform(X)
+    labels = km.labels_
+    return X, labels
+

@@ -1,10 +1,11 @@
 import fluster
-from dropbox
+# from dropbox
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 
+
 def pipeline(token):
-    """  
+    """
     Call this to get files from dropbox, parse, cluster and return cluster results.
 
     Parameters
@@ -31,4 +32,3 @@ def pipeline(token):
     X = km.fit_transform(X)
     labels = km.labels_
     return X, labels
-
